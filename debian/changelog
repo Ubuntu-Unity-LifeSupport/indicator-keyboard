@@ -1,0 +1,29 @@
+indicator-keyboard (0.0.0+13.10.20130821-0ubuntu1) saucy; urgency=low
+
+  [ Jeremy Bicha ]
+  * debian/control:
+    - Don't build-depend on vala-0.20-vapi
+    - Build-depend on dbus for tests
+
+  [ William Hua ]
+  * Initial Release.
+
+  [ Mathieu Trudel-Lapierre ]
+  * Automatic snapshot from revision 102 (bootstrap)
+  * debian/control:
+    - Packaging review, add comment to developers.
+    - Fix Vcs-Bzr, Vcs-Browser.
+    - Sort Build-Depends, use trailing commas.
+    - Improve long description.
+  * debian/rules:
+    - Add DPKG_GENSYMBOLS_CHECK_LEVEL = 4.
+    - Override dh_autoreconf to run ./autogen.sh.
+    - Override dh_install to remove .la and .a files.
+    - Run dh_install with --fail-missing.
+  * debian/compat: bump to compat level 9.
+  * debian/source/format: make sure we're using format 1.0.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 103
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 21 Aug 2013 14:07:27 +0000
