@@ -1,3 +1,9 @@
+indicator-keyboard (0.0.0+13.10.20130924.2-0ubuntu2) saucy; urgency=low
+
+  * Update translations template (workaround launchpad bug) (lp: #1223488)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 27 Sep 2013 16:10:01 +0200
+
 indicator-keyboard (0.0.0+13.10.20130924.2-0ubuntu1) saucy; urgency=low
 
   [ William Hua ]
