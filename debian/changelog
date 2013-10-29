@@ -1,3 +1,14 @@
+indicator-keyboard (0.0.0+14.04.20131029.1-0ubuntu1) trusty; urgency=low
+
+  [ Dmitrijs Ledkovs ]
+  * Define "ubiquity" indicator profile, reusing the greeter object. (LP:
+    #1241539)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 155
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 29 Oct 2013 10:30:36 +0000
+
 indicator-keyboard (0.0.0+13.10.20131010.1-0ubuntu1) saucy; urgency=low
 
   [ William Hua ]
