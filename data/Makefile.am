@@ -22,13 +22,15 @@ indicator_keyboard_icon_generator_CFLAGS = $(AM_CFLAGS)            \
                                            $(PANGOFT2_CFLAGS)      \
                                            $(GTK_CFLAGS)           \
                                            $(GNOME_DESKTOP_CFLAGS) \
-                                           $(LIBXKLAVIER_CFLAGS)
+                                           $(LIBXKLAVIER_CFLAGS)   \
+                                           $(COVERAGE_CFLAGS)
 indicator_keyboard_icon_generator_LDFLAGS = $(AM_LDFLAGS)         \
                                             $(GEE_LIBS)           \
                                             $(PANGOFT2_LIBS)      \
                                             $(GTK_LIBS)           \
                                             $(GNOME_DESKTOP_LIBS) \
-                                            $(LIBXKLAVIER_LIBS)
+                                            $(LIBXKLAVIER_LIBS)   \
+                                            $(COVERAGE_LDFLAGS)
 
 dist_service_DATA = indicator-keyboard.service
 servicedir = $(DBUS_SERVICE_DIR)
@@ -46,6 +48,7 @@ com.canonical.indicator.keyboard:
 	$(AM_V_GEN) (echo '[Indicator Service]';                                              \
 	             echo 'Name=indicator-keyboard';                                          \
 	             echo 'ObjectPath=/com/canonical/indicator/keyboard';                     \
+	             echo 'Position=80';                                                      \
 	             echo '';                                                                 \
 	             echo '[desktop]';                                                        \
 	             echo 'ObjectPath=/com/canonical/indicator/keyboard/desktop';             \
