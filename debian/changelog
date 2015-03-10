@@ -1,8 +1,15 @@
+indicator-keyboard (0.0.0+15.04.20150310-0ubuntu1) vivid; urgency=medium
+
+  [ William Hua ]
+  * Basic support for Fcitx input sources. (LP: #1363150)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 10 Mar 2015 17:20:41 +0000
+
 indicator-keyboard (0.0.0+14.10.20140620.1-0ubuntu2) utopic; urgency=medium
 
   * No change rebuild for gnome-desktop 3.12
 
- -- Tim Lunn <tim@feathertop.org>  Tue, 23 Sep 2014 08:27:21 +1000
+ -- Tim Lunn <tim@feathertop.org>  Mon, 29 Sep 2014 21:55:43 +1000
 
 indicator-keyboard (0.0.0+14.10.20140620.1-0ubuntu1) utopic; urgency=low
 
