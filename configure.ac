@@ -46,7 +46,6 @@ PKG_CHECK_MODULES([IBUS], [ibus-1.0])
 PKG_CHECK_MODULES([FCITX_GCLIENT], [fcitx-gclient])
 PKG_CHECK_MODULES([ACCOUNTSSERVICE], [accountsservice])
 PKG_CHECK_MODULES([LIGHTDM], [liblightdm-gobject-1])
-PKG_CHECK_MODULES([URLDISPATCHER], [url-dispatcher-1 >= 1])
 
 SYSTEMD_USERDIR=`$PKG_CONFIG --variable=systemduserunitdir systemd`
 AC_SUBST(SYSTEMD_USERDIR)
