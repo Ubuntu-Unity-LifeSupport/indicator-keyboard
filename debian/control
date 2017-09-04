@@ -28,6 +28,7 @@ Homepage: https://code.launchpad.net/indicator-keyboard
 # and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~indicator-applet-developers/indicator-keyboard/trunk
 Vcs-Browser: https://bazaar.launchpad.net/~indicator-applet-develpers/indicator-keyboard/trunk/files
+X-Ubuntu-Use-Langpack: yes
 
 Package: indicator-keyboard
 Architecture: any

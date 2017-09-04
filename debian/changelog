@@ -1,3 +1,11 @@
+indicator-keyboard (0.0.0+17.04.20170301-0ubuntu3) artful; urgency=medium
+
+  * debian/control: use 'X-Ubuntu-Use-Langpack: yes' since the indicator is 
+    now in universe, this way the translations are still available on 
+    launchpad and exported to the langpacks
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 04 Sep 2017 18:39:23 +0200
+
 indicator-keyboard (0.0.0+17.04.20170301-0ubuntu2) artful; urgency=medium
 
   * Drop url-dispatcher support.
