@@ -59,6 +59,7 @@ public class Indicator.Keyboard.Service : Object {
 	private UnityGreeter? unity_greeter;
 	private string? greeter_user;
 	private uint lightdm_current;
+	private bool? is_unity = null;
 
 	[DBus (visible = false)]
 	public Service (ref unowned string[] args) {
@@ -1199,9 +1200,34 @@ public class Indicator.Keyboard.Service : Object {
 	}
 
 	[DBus (visible = false)]
+	private bool desktop_is_unity() {
+		if (is_unity != null) {
+			return (!) is_unity;
+		}
+
+		is_unity = false;
+		unowned string? desktop = Environment.get_variable ("XDG_CURRENT_DESKTOP");
+
+		if (desktop != null) {
+			foreach (var name in ((!) desktop).split(":")) {
+				if (name == "Unity") {
+					is_unity = true;
+					break;
+				}
+			}
+		}
+
+		return (!) is_unity;
+	}
+
+	[DBus (visible = false)]
 	private void handle_activate_settings (Variant? parameter) {
 		try {
-			Process.spawn_command_line_async ("unity-control-center region layouts");
+			if (desktop_is_unity()) {
+				Process.spawn_command_line_async ("unity-control-center region layouts");
+			} else {
+				Process.spawn_command_line_async ("gnome-control-center region layouts");
+			}
 		} catch (SpawnError error) {
 			warning ("error: %s", error.message);
 		}
