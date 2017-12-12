@@ -1,3 +1,9 @@
+indicator-keyboard (0.0.0+18.04.20171212-0ubuntu1) bionic; urgency=medium
+
+  * Fix build with vala 0.38
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 12 Dec 2017 21:49:59 +0000
+
 indicator-keyboard (0.0.0+17.10.20170906-0ubuntu1) artful; urgency=medium
 
   * Use gnome-control-center on non-Unity desktops. (LP: #1713548)

@@ -19,7 +19,7 @@
 [DBus (name = "com.canonical.indicator.keyboard")]
 public class Indicator.Keyboard.Service : Object {
 
-	private static const uint PROPERTIES_DELAY = 250;
+	private const uint PROPERTIES_DELAY = 250;
 
 	private static Service service;
 
@@ -143,7 +143,7 @@ public class Indicator.Keyboard.Service : Object {
 		per_window_settings.changed["group-per-window"].connect (handle_changed_group_per_window);
 
 		var sss = SettingsSchemaSource.get_default();
-		if (sss.lookup("com.canonical.Unity8", true) != null) {
+		if (sss != null && ((!) sss).lookup("com.canonical.Unity8", true) != null) {
 			unity8_settings = new Settings("com.canonical.Unity8");
 			((!) unity8_settings).changed["osk-switch-visible"].connect((key) => {
 				get_desktop_menu().rebuild_osk_section(((!) unity8_settings).get_boolean(key));
