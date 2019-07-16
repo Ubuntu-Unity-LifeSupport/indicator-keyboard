@@ -31,7 +31,7 @@ public class Indicator.Keyboard.Service : Object {
 	private Settings source_settings;
 	private Settings per_window_settings;
 	private Settings? unity8_settings;
-	private SList<Act.User> users;
+	private SList<weak Act.User> users;
 
 	private WindowStack? window_stack;
 	private Gee.HashMap<uint, Source>? window_sources;

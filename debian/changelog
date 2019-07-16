@@ -1,3 +1,10 @@
+indicator-keyboard (0.0.0+19.10.20190716-0ubuntu1) eoan; urgency=medium
+
+  [ Khurshid Alam ]
+  * Fix build agaonst vala >= 0.44
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Jul 2019 19:19:58 +0000
+
 indicator-keyboard (0.0.0+18.04.20180216-0ubuntu1) bionic; urgency=medium
 
   * No-change rebuild against latest gnome-desktop3
