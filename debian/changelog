@@ -1,3 +1,9 @@
+indicator-keyboard (0.0.0+19.10.20190716-0ubuntu2) eoan; urgency=medium
+
+  * No-change rebuild for libgnome-desktop3-18
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Tue, 27 Aug 2019 10:25:45 +0100
+
 indicator-keyboard (0.0.0+19.10.20190716-0ubuntu1) eoan; urgency=medium
 
   [ Khurshid Alam ]
