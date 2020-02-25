@@ -1,3 +1,9 @@
+indicator-keyboard (0.0.0+19.10.20190716-0ubuntu3) focal; urgency=medium
+
+  * Rebuild with the new gnome-desktop soname version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 25 Feb 2020 20:09:37 +0100
+
 indicator-keyboard (0.0.0+19.10.20190716-0ubuntu2) eoan; urgency=medium
 
   * No-change rebuild for libgnome-desktop3-18
