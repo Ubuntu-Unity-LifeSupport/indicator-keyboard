@@ -1,3 +1,15 @@
+indicator-keyboard (0.0.0+19.10.20220803-0ubuntu1) kinetic; urgency=medium
+
+  [ Alexandre Ghiti ]
+  * Fix build with latest vala
+  * Update dconf-service path
+
+  [ Jeremy Bicha ]
+  * Temporarily ignore build test failures. See bug 1968333
+  * Bump debhelper-compat to 13
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 03 Aug 2022 14:06:42 -0400
+
 indicator-keyboard (0.0.0+19.10.20190716-0ubuntu3) focal; urgency=medium
 
   * Rebuild with the new gnome-desktop soname version

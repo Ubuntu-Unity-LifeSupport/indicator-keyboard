@@ -7,41 +7,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-keyboard\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2018-04-26 05:40+0000\n"
-"PO-Revision-Date: 2014-08-16 11:17+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2022-07-31 04:56+0000\n"
+"PO-Revision-Date: 2022-07-08 18:13+0000\n"
+"Last-Translator: Istiak Ferdous <Unknown>\n"
 "Language-Team: Bengali <bn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2018-04-27 05:45+0000\n"
-"X-Generator: Launchpad (build 18623)\n"
+"X-Launchpad-Export-Date: 2022-08-01 04:54+0000\n"
+"X-Generator: Launchpad (build d8a8b6effe4eae83e8bb5babdb93ddb4ac4f09e0)\n"
 
 #: ../lib/main.vala:852
 #, c-format
 msgid "%s input source"
-msgstr ""
+msgstr "%s ইনপুট উৎস"
 
 #: ../lib/main.vala:856
 msgid "Keyboard Layout"
-msgstr ""
+msgstr "কীবোর্ড বিন্যাস"
 
 #: ../lib/main.vala:857
 msgid "Input source selection"
-msgstr ""
+msgstr "ইনপুট উৎস নির্বাচন"
 
 #: ../lib/indicator-menu.vala:62
 msgid "Character Map"
-msgstr ""
+msgstr "ক্যারেকটার ম্যাপ"
 
 #: ../lib/indicator-menu.vala:63
 msgid "Keyboard Layout Chart"
-msgstr ""
+msgstr "কিবোর্ড লেআউট চার্ট"
 
 #: ../lib/indicator-menu.vala:64
 msgid "Text Entry Settings..."
-msgstr ""
+msgstr "টেক্সট এন্ট্রি সেটিংস..."
 
 #: ../lib/indicator-menu.vala:120
 msgid "On-screen keyboard"
-msgstr ""
+msgstr "অন-স্ক্রিন কীবোর্ড"

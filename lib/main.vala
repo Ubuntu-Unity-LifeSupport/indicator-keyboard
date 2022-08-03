@@ -839,7 +839,7 @@ public class Indicator.Keyboard.Service : Object {
 		string? name = null;
 
 		var sources = get_sources ();
-		var active = get_active_action ().get_state ().get_uint32 ();
+		var active = ((!) get_active_action ().get_state ()).get_uint32 ();
 
 		if (active < sources.length) {
 			icon = sources[active].icon;
@@ -983,7 +983,7 @@ public class Indicator.Keyboard.Service : Object {
 
 			if (xkb_length > 1) {
 				var active_action = get_active_action ();
-				var active = active_action.get_state ().get_uint32 ();
+				var active = ((!) active_action.get_state ()).get_uint32 ();
 				var offset = -((!) parameter).get_int32 () % xkb_length;
 
 				/* Make offset positive modulo xkb_length. */

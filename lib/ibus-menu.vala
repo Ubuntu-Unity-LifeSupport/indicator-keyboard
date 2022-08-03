@@ -279,7 +279,7 @@ public class Indicator.Keyboard.IBusMenu : MenuModel {
 
 	/* Forward all menu model calls to our internal menu. */
 
-	public override Variant get_item_attribute_value (int item_index, string attribute, VariantType? expected_type) {
+	public override Variant? get_item_attribute_value (int item_index, string attribute, VariantType? expected_type) {
 		return menu.get_item_attribute_value (item_index, attribute, expected_type);
 	}
 
@@ -287,7 +287,7 @@ public class Indicator.Keyboard.IBusMenu : MenuModel {
 		menu.get_item_attributes (item_index, out attributes);
 	}
 
-	public override MenuModel get_item_link (int item_index, string link) {
+	public override MenuModel? get_item_link (int item_index, string link) {
 		return menu.get_item_link (item_index, link);
 	}
 

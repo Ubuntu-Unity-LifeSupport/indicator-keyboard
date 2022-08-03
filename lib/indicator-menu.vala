@@ -151,11 +151,11 @@ public class Indicator.Keyboard.IndicatorMenu : MenuModel {
 		indicator_menu.get_item_links (item_index, out links);
 	}
 
-	public override Variant get_item_attribute_value (int item_index, string attribute, VariantType? expected_type) {
+	public override Variant? get_item_attribute_value (int item_index, string attribute, VariantType? expected_type) {
 		return indicator_menu.get_item_attribute_value (item_index, attribute, expected_type);
 	}
 
-	public override MenuModel get_item_link (int item_index, string link) {
+	public override MenuModel? get_item_link (int item_index, string link) {
 		return indicator_menu.get_item_link (item_index, link);
 	}
 
