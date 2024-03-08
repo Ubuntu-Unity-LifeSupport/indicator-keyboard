@@ -1,3 +1,9 @@
+indicator-keyboard (0.0.0+19.10.20220803-0ubuntu2) noble; urgency=medium
+
+  * No-change rebuild against libglib2.0-0t64
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 08 Mar 2024 05:09:09 +0000
+
 indicator-keyboard (0.0.0+19.10.20220803-0ubuntu1) kinetic; urgency=medium
 
   [ Alexandre Ghiti ]
