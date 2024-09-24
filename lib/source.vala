@@ -127,7 +127,6 @@ public class Indicator.Keyboard.Source : Object {
 
 	private static IBus.Bus get_ibus_bus () {
 		if (ibus_bus == null) {
-			IBus.init ();
 			ibus_bus = new IBus.Bus ();
 		}
 

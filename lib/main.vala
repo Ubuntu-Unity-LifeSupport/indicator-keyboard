@@ -100,6 +100,8 @@ public class Indicator.Keyboard.Service : Object {
 			Gdk.init (ref args);
 		}
 
+		IBus.init ();
+
 		if (is_login_user ()) {
 			var name = Environment.get_variable ("UNITY_GREETER_DBUS_NAME");
 
@@ -188,7 +190,6 @@ public class Indicator.Keyboard.Service : Object {
 	[DBus (visible = false)]
 	private IBus.Bus get_ibus () {
 		if (ibus == null) {
-			IBus.init ();
 
 			var proxy = new IBus.Bus ();
 
