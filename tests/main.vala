@@ -35,12 +35,7 @@ public class Service : Object {
 
 	public void execute (string command) {
 		_command = command;
-
-		var pspec = get_class ().find_property ("command");
-
-		if (pspec != null) {
-			notify["command"] ((!) pspec);
-		}
+		notify_property ("command");
 	}
 }
 
