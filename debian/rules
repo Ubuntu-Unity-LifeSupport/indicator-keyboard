@@ -16,7 +16,5 @@ execute_after_dh_install:
 	find debian/indicator-keyboard/usr/lib -name *.la -delete
 	find debian/indicator-keyboard/usr/lib -name *.a -delete
 
-# Temporarily ignore build test failures
-# https://launchpad.net/bugs/1968333
 override_dh_auto_test:
-	XDG_CURRENT_DESKTOP=Unity:Unity7:ubuntu dh_auto_test || true
+	XDG_CURRENT_DESKTOP=Unity:Unity7:ubuntu dh_auto_test
