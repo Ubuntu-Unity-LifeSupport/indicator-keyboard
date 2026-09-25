@@ -1,3 +1,13 @@
+indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1+unity1) resolute; urgency=medium
+
+  * Build-depend on lightdm-vala, split off from liblightdm-gobject-1-dev
+    (from 0ubuntu3 in 26.10).
+  * Build-depend on systemd-dev instead of systemd, so configure finds
+    systemduserunitdir and the systemd user unit is still installed (26.10's
+    rebuild lost it).
+
+ -- Ubuntu Unity Life Support <mihail.rozshko@gmail.com>  Fri, 25 Sep 2026 01:40:00 +0000
+
 indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1) oracular; urgency=medium
 
   [ Sebastian Geiger ]
