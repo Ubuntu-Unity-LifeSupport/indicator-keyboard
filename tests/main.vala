@@ -626,6 +626,29 @@ public class Tests : Object, Fixture {
 	}
 }
 
+void test_xkb_input_sources () {
+	/* AccountsService has no value cached (LP: #2166139) */
+	assert (get_xkb_input_sources (null).length == 0);
+
+	var empty = new Variant.array (new VariantType ("a{ss}"), {});
+	assert (get_xkb_input_sources (empty).length == 0);
+
+	var builder = new VariantBuilder (new VariantType ("aa{ss}"));
+	builder.open (new VariantType ("a{ss}"));
+	builder.add ("{ss}", "xkb", "us");
+	builder.close ();
+	builder.open (new VariantType ("a{ss}"));
+	builder.add ("{ss}", "ibus", "pinyin");
+	builder.close ();
+	builder.open (new VariantType ("a{ss}"));
+	builder.add ("{ss}", "xkb", "de+neo");
+	builder.close ();
+	var sources = get_xkb_input_sources (builder.end ());
+	assert (sources.length == 2);
+	assert (sources[0] == "us");
+	assert (sources[1] == "de+neo");
+}
+
 public int main (string[] args) {
 	display = Environment.get_variable ("DISPLAY");
 
@@ -640,6 +663,7 @@ public int main (string[] args) {
 	Test.add_data_func ("/indicator-keyboard-service/update-visible", Fixture.create<Tests> (Tests.test_update_visible));
 	Test.add_data_func ("/indicator-keyboard-service/update-input-source", Fixture.create<Tests> (Tests.test_update_input_source));
 	Test.add_data_func ("/indicator-keyboard-service/update-input-sources", Fixture.create<Tests> (Tests.test_update_input_sources));
+	Test.add_func ("/indicator-keyboard-service/xkb-input-sources", test_xkb_input_sources);
 
 	return Test.run ();
 }

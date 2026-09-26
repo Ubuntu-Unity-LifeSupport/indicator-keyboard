@@ -1,3 +1,17 @@
+indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1+unity3) resolute; urgency=medium
+
+  * lib/input-sources.vala: read the xkb layouts of a user's InputSources
+    in one place, and treat a NULL value as no layouts. AccountsService
+    returns NULL while it has nothing cached for the user, for instance
+    while accounts-daemon restarts; the greeter's service then iterated
+    NULL in migrate_input_sources() and crashed in g_variant_iter_new()
+    (LP: #2166139). Skip the LightDM lookup of such a user too, whose name
+    is NULL then.
+  * tests: add xkb-input-sources, covering a NULL, an empty and a mixed
+    InputSources value.
+
+ -- Ubuntu Unity Life Support <mihail.rozshko@gmail.com>  Sat, 26 Sep 2026 09:17:15 +0000
+
 indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1+unity2) resolute; urgency=medium
 
   * tests/main.vala: emit the mock service's notify with notify_property().

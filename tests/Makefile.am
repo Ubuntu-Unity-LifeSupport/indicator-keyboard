@@ -10,7 +10,8 @@ AM_VALAFLAGS = --metadatadir $(top_srcdir)/deps \
 
 indicator_keyboard_tests_SOURCES = main.vala    \
                                    fixture.vala \
-                                   config.vala
+                                   config.vala  \
+                                   $(top_srcdir)/lib/input-sources.vala
 indicator_keyboard_tests_VALAFLAGS = $(AM_VALAFLAGS) \
                                      --pkg gio-2.0
 indicator_keyboard_tests_CFLAGS = $(AM_CFLAGS)  \

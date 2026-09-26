@@ -15,7 +15,8 @@ indicator_keyboard_service_SOURCES = main.vala            \
                                      keyboard-plugin.vala \
                                      window-stack.vala    \
                                      unity-session.vala   \
-                                     unity-greeter.vala
+                                     unity-greeter.vala   \
+                                     input-sources.vala
 indicator_keyboard_service_VALAFLAGS = $(AM_VALAFLAGS)            \
                                        --pkg gee-0.8              \
                                        --pkg posix                \

@@ -321,22 +321,10 @@ public class Indicator.Keyboard.Service : Object {
 				Act.User? user = manager.get_user ((!) greeter_user);
 
 				if (user != null && ((!) user).is_loaded) {
-					foreach (var outer in ((!) user).input_sources) {
-						foreach (var inner in (!) outer) {
-							unowned string key;
-							unowned string value;
+					var sources = get_xkb_input_sources (((!) user).input_sources);
 
-							((!) inner).get ("{&s&s}", out key, out value);
-
-							if (key == "xkb") {
-								source = value;
-								break;
-							}
-						}
-
-						if (source != null) {
-							break;
-						}
+					if (sources.length > 0) {
+						source = sources[0];
 					}
 
 					if (source == null) {
@@ -534,21 +522,12 @@ public class Indicator.Keyboard.Service : Object {
 			if (user.is_loaded) {
 				var done = false;
 
-				foreach (var outer in user.input_sources) {
-					foreach (var inner in (!) outer) {
-						unowned string key;
-						unowned string source;
+				foreach (var source in get_xkb_input_sources (user.input_sources)) {
+					done = true;
 
-						((!) inner).get ("{&s&s}", out key, out source);
-
-						if (key == "xkb") {
-							done = true;
-
-							if (!added.contains (source)) {
-								list.add (source);
-								added.add (source);
-							}
-						}
+					if (!added.contains (source)) {
+						list.add (source);
+						added.add (source);
 					}
 				}
 
@@ -569,8 +548,15 @@ public class Indicator.Keyboard.Service : Object {
 				}
 
 				if (!done) {
+					/* NULL while AccountsService reloads the user, like the
+					 * input sources (LP: #2166139) */
+					unowned string? user_name = user.user_name;
 					var user_list = LightDM.UserList.get_instance ();
-					LightDM.User? light_user = user_list.get_user_by_name (user.user_name);
+					LightDM.User? light_user = null;
+
+					if (user_name != null) {
+						light_user = user_list.get_user_by_name ((!) user_name);
+					}
 
 					if (light_user != null) {
 						var layouts = ((!) light_user).get_layouts ();
