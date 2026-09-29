@@ -42,3 +42,27 @@ string[] get_xkb_input_sources (Variant? input_sources) {
 
 	return sources;
 }
+
+/*
+ * Whether the greeter's input sources can be rebuilt from AccountsService.
+ * While accounts-daemon restarts, the listed users are loaded but their cache
+ * is empty (no user name, no input sources) for a fraction of a second;
+ * rebuilding then wrote an empty list over the greeter's layouts. Not while
+ * every counted user is in that state (UNITY-20260928-014).
+ */
+bool greeter_sources_known (uint users_with_data, uint users_without_data) {
+	return users_with_data > 0 || users_without_data == 0;
+}
+
+/*
+ * The current index to store for the greeter: the wanted one if it is in
+ * range, else the last, and 0 when there are no sources (list.size - 1
+ * underflowed to 4294967295 there, UNITY-20260928-014).
+ */
+uint greeter_current (uint wanted, uint n_sources) {
+	if (n_sources == 0) {
+		return 0;
+	}
+
+	return wanted < n_sources ? wanted : n_sources - 1;
+}

@@ -649,6 +649,31 @@ void test_xkb_input_sources () {
 	assert (sources[1] == "de+neo");
 }
 
+void test_greeter_sources_known () {
+	/* accounts-daemon restarting: every counted user has an empty cache
+	 * (UNITY-20260928-014) */
+	assert (!greeter_sources_known (0, 1));
+	assert (!greeter_sources_known (0, 3));
+	/* a stale object next to users with data does not block */
+	assert (greeter_sources_known (1, 1));
+	assert (greeter_sources_known (2, 0));
+	/* no users at all: the LightDM layout alone, as before */
+	assert (greeter_sources_known (0, 0));
+}
+
+void test_greeter_current () {
+	/* no sources: 0, not list.size - 1 = 4294967295 (UNITY-20260928-014) */
+	assert (greeter_current (0, 0) == 0);
+	assert (greeter_current (3, 0) == 0);
+	assert (greeter_current (uint.MAX, 0) == 0);
+	/* in range: kept */
+	assert (greeter_current (0, 2) == 0);
+	assert (greeter_current (1, 2) == 1);
+	/* out of range, e.g. a stored 4294967295: the last, as before */
+	assert (greeter_current (2, 2) == 1);
+	assert (greeter_current (uint.MAX, 2) == 1);
+}
+
 public int main (string[] args) {
 	display = Environment.get_variable ("DISPLAY");
 
@@ -664,6 +689,8 @@ public int main (string[] args) {
 	Test.add_data_func ("/indicator-keyboard-service/update-input-source", Fixture.create<Tests> (Tests.test_update_input_source));
 	Test.add_data_func ("/indicator-keyboard-service/update-input-sources", Fixture.create<Tests> (Tests.test_update_input_sources));
 	Test.add_func ("/indicator-keyboard-service/xkb-input-sources", test_xkb_input_sources);
+	Test.add_func ("/indicator-keyboard-service/greeter-sources-known", test_greeter_sources_known);
+	Test.add_func ("/indicator-keyboard-service/greeter-current", test_greeter_current);
 
 	return Test.run ();
 }

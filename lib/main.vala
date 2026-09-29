@@ -32,6 +32,7 @@ public class Indicator.Keyboard.Service : Object {
 	private Settings per_window_settings;
 	private Settings? unity8_settings;
 	private SList<weak Act.User> users;
+	private bool migration_pending;
 
 	private WindowStack? window_stack;
 	private Gee.HashMap<uint, Source>? window_sources;
@@ -407,6 +408,15 @@ public class Indicator.Keyboard.Service : Object {
 						});
 					}
 				}
+
+				/* An instance started while accounts-daemon reloaded took
+				 * this branch and never migrated again after a daemon
+				 * restart (UNITY-20260928-014). */
+				manager.notify["is-loaded"].connect ((pspec) => {
+					if (manager.is_loaded) {
+						migrate_input_sources ();
+					}
+				});
 			} else {
 				manager.notify["is-loaded"].connect ((pspec) => {
 					if (manager.is_loaded) {
@@ -426,6 +436,14 @@ public class Indicator.Keyboard.Service : Object {
 					}
 				});
 			}
+
+			/* A pass skipped or incomplete for want of AccountsService data
+			 * is redone when a user's data arrives (UNITY-20260928-014). */
+			manager.user_changed.connect ((user) => {
+				if (migration_pending) {
+					migrate_input_sources ();
+				}
+			});
 
 			var user_list = LightDM.UserList.get_instance ();
 
@@ -515,11 +533,29 @@ public class Indicator.Keyboard.Service : Object {
 
 	[DBus (visible = false)]
 	private void migrate_input_sources () {
+		var manager = Act.UserManager.get_default ();
+
+		if (!manager.is_loaded) {
+			/* Its notify::is-loaded handler migrates (UNITY-20260928-014). */
+			return;
+		}
+
 		var list = new Gee.LinkedList<string> ();
 		var added = new Gee.HashSet<string> ();
+		uint with_data = 0;
+		uint without_data = 0;
 
-		foreach (var user in users) {
-			if (user.is_loaded) {
+		/* Listed afresh: the stored list can be stale (UNITY-20260928-014). */
+		foreach (var user in manager.list_users ()) {
+			if (user.is_loaded && !user.is_nonexistent) {
+				if (user.user_name == null) {
+					/* AccountsService has not refilled this user yet */
+					without_data++;
+					continue;
+				}
+
+				with_data++;
+
 				var done = false;
 
 				foreach (var source in get_xkb_input_sources (user.input_sources)) {
@@ -577,6 +613,12 @@ public class Indicator.Keyboard.Service : Object {
 			}
 		}
 
+		migration_pending = without_data > 0;
+
+		if (!greeter_sources_known (with_data, without_data)) {
+			return;
+		}
+
 		LightDM.Layout? layout = LightDM.get_layout ();
 
 		if (layout != null) {
@@ -599,13 +641,19 @@ public class Indicator.Keyboard.Service : Object {
 			builder.add ("(ss)", "xkb", name);
 		}
 
-		if (lightdm_current < list.size) {
-			source_settings.set_uint ("current", lightdm_current);
-		} else {
-			source_settings.set_uint ("current", list.size - 1);
+		/* Sources first, so current is never past the stored list, and
+		 * nothing is written when nothing changed (UNITY-20260928-014). */
+		var new_sources = builder.end ();
+
+		if (!new_sources.equal (source_settings.get_value ("sources"))) {
+			source_settings.set_value ("sources", new_sources);
 		}
 
-		source_settings.set_value ("sources", builder.end ());
+		var current = greeter_current (lightdm_current, (uint) list.size);
+
+		if (current != source_settings.get_uint ("current")) {
+			source_settings.set_uint ("current", current);
+		}
 
 		update_greeter_user ();
 	}

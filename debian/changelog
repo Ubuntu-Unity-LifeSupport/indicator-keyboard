@@ -1,3 +1,22 @@
+indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1+unity4) resolute; urgency=medium
+
+  * lib/main.vala: do not rewrite the greeter's input sources while
+    AccountsService has no data. When accounts-daemon restarts, the listed
+    users are loaded with an empty cache for a fraction of a second, and
+    migrate_input_sources() wrote sources=[] and current=list.size - 1
+    (4294967295) over the greeter's layouts; a stored 4294967295 came back
+    after a reboot as the last layout. The pass is now skipped while no
+    counted user has data and redone on ActUserManager::user-changed. Users
+    are listed afresh on every pass, and a manager notify::is-loaded handler
+    is connected when the manager was already loaded at start too (an
+    instance started inside the reload window never migrated again). Write
+    sources before current, and only values that changed.
+  * lib/input-sources.vala: greeter_sources_known() and greeter_current()
+    (0 with no sources, the wanted index if in range, else the last).
+  * tests: add greeter-sources-known and greeter-current.
+
+ -- Ubuntu Unity Life Support <mihail.rozshko@gmail.com>  Tue, 29 Sep 2026 10:16:00 +0000
+
 indicator-keyboard (0.0.0+19.10.20240924-0ubuntu1+unity3) resolute; urgency=medium
 
   * lib/input-sources.vala: read the xkb layouts of a user's InputSources
