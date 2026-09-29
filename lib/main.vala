@@ -547,8 +547,10 @@ public class Indicator.Keyboard.Service : Object {
 
 		/* Listed afresh: the stored list can be stale (UNITY-20260928-014). */
 		foreach (var user in manager.list_users ()) {
-			if (user.is_loaded && !user.is_nonexistent) {
-				if (user.user_name == null) {
+			if (user.is_loaded && !user.is_nonexistent ()) {
+				unowned string? name = user.user_name;
+
+				if (name == null) {
 					/* AccountsService has not refilled this user yet */
 					without_data++;
 					continue;
